@@ -186,6 +186,7 @@ h2{ font-size: clamp(24px,4vw,30px); font-weight:700; margin:0 0 var(--space-3);
   opacity:0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease, box-shadow .25s ease, translate .25s ease;
   box-shadow: 0 20px 40px -28px rgba(0,0,0,0.7); position:relative; overflow:hidden;
 }
+.skill-card ::selection { background: rgba(var(--accent-rgb), 0.3); color: var(--bg); }
 .skill-card.in-view{ opacity:1; transform: translateY(0); }
 .skill-card:hover{ box-shadow: 0 24px 46px -22px rgba(0,0,0,0.55); translate: 0 -3px; }
 .skill-card h3{ margin:0 0 10px; font-size:14px; font-weight:600; }

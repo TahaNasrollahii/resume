@@ -1,281 +1,488 @@
 <!DOCTYPE html>
 <html lang="en" data-lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taha Nasrollahi — Backend Developer</title>
-<meta name="description" content="Taha Nasrollahi — Backend developer specializing in Django, FastAPI, async task queues and real-time systems.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taha Nasrollahi | Backend Developer</title>
+  <meta name="description"
+    content="Taha Nasrollahi — Backend developer specializing in Django, FastAPI, async task queues and real-time systems.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body data-lang="en">
 
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a href="#top" class="nav-mark">TN</a>
-
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#about"><span class="slash">/</span><span class="en">about</span><span class="fa">درباره</span></a>
-      <a href="#work"><span class="slash">/</span><span class="en">work</span><span class="fa">پروژه‌ها</span></a>
-      <a href="#education"><span class="slash">/</span><span class="en">education</span><span class="fa">تحصیلات</span></a>
-      <a href="#contact"><span class="slash">/</span><span class="en">contact</span><span class="fa">تماس</span></a>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
-        <span class="lt-option" data-set="en">EN</span><span class="lt-divider">/</span><span class="lt-option" data-set="fa">FA</span>
-      </button>
-      <a class="nav-resume-btn" href="assets/Taha-Nasrollahi-Resume.pdf" download>
-        <span class="en">Résumé</span><span class="fa">رزومه</span>
-      </a>
-      <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">≡</button>
+  <div class="rail" id="rail">
+    <div class="rail-track">
+      <div class="rail-fill" id="railFill"></div>
     </div>
   </div>
-  <nav class="nav-links-mobile" id="navMobile" aria-label="Primary mobile">
-    <a href="#about"><span class="en">about</span><span class="fa">درباره</span></a>
-    <a href="#work"><span class="en">work</span><span class="fa">پروژه‌ها</span></a>
-    <a href="#education"><span class="en">education</span><span class="fa">تحصیلات</span></a>
-    <a href="#contact"><span class="en">contact</span><span class="fa">تماس</span></a>
-  </nav>
-</header>
 
-<main>
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="section-inner hero-grid">
-      <div class="hero-main">
-        <p class="pill">
-          <span class="pill-dot" aria-hidden="true"></span>
-          <span class="en">open to internships &amp; junior backend roles</span>
-          <span class="fa">آماده برای کارآموزی و موقعیت‌های جونیور بک‌اند</span>
-        </p>
+  <header>
+    <nav class="wrap">
+      <div class="logo"><span class="dot"></span>TN</div>
+      <ul class="nav-links" id="navLinks">
+        <div class="nav-pill" id="navPill"></div>
+        <li><a href="#about" data-target="about"><span class="en">/about</span><span class="fa">/درباره</span></a></li>
+        <li><a href="#work" data-target="work"><span class="en">/work</span><span class="fa">/پروژه‌ها</span></a></li>
+        <li><a href="#education" data-target="education"><span class="en">/education</span><span
+              class="fa">/تحصیلات</span></a></li>
+        <li><a href="#contact" data-target="contact"><span class="en">/contact</span><span class="fa">/تماس</span></a>
+        </li>
+      </ul>
 
-        <h1>
-          <span class="en">Backend Developer</span>
-          <span class="fa">توسعه‌دهنده بک‌اند</span>
-        </h1>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button class="lang-toggle mono" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lt-option" data-set="en">EN</span><span class="lt-divider">/</span><span class="lt-option"
+            data-set="fa">FA</span>
+        </button>
+        <a class="cta-pill" href="assets/Taha-Nasrollahi-Resume.pdf" download style="padding: 8px 16px;">
+          <span class="en">Resume</span><span class="fa">رزومه</span>
+        </a>
+        <button class="nav-toggle mono" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">≡</button>
+      </div>
+    </nav>
+  </header>
 
-        <p class="hero-lede">
-          <span class="en">I build asynchronous APIs, background task pipelines and real-time systems — handling everything from data modeling to deployment, with Python and Django at the core.</span>
-          <span class="fa">من روی API های ناهم‌زمان، پایپ‌لاین‌های وظیفه در پس‌زمینه و سیستم‌های real-time کار می‌کنم؛ از مدل‌سازی داده تا استقرار، با پایتون و جنگو در مرکز کار.</span>
-        </p>
+  <main class="wrap">
+    <!-- ============ HERO ============ -->
+    <section class="hero" style="border-top:none; padding-top:56px;" id="top">
+      <canvas id="heroCanvas"></canvas>
+      <div class="hero-spotlight" id="heroSpotlight"></div>
+      <div class="deco-circle spin-slow" style="width:520px; height:520px; top:-160px; right:-200px;"></div>
+      <div class="deco-circle spin-slow-rev" style="width:340px; height:340px; top:-40px; right:-60px;"></div>
 
-        <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">
-            <span class="en">View my work</span><span class="fa">دیدن پروژه‌ها</span>
+      <div class="status-line"><span class="pulse"></span><span class="en">open to internships &amp; junior
+          roles</span><span class="fa">آماده برای کارآموزی و جونیور</span></div>
+
+      <h1 id="heroName"><span class="en">Taha Nasrollahi</span><span class="fa">طاها نصرالهی</span><span
+          class="cursor-blink" id="heroCursor"></span></h1>
+      <p class="role mono"><span class="en">Backend Developer</span><span class="fa">توسعه‌دهنده بک‌اند</span></p>
+      <p class="tagline">
+        <span class="en">I build asynchronous APIs, background task pipelines and real-time systems — handling
+          everything from data modeling to deployment, with Python and Django at the core.</span>
+        <span class="fa">من روی API های ناهم‌زمان، پایپ‌لاین‌های وظیفه در پس‌زمینه و سیستم‌های real-time کار می‌کنم؛ از
+          مدل‌سازی داده تا استقرار، با پایتون و جنگو در مرکز کار.</span>
+      </p>
+
+      <div class="hero-actions">
+        <a href="#work" class="cta-pill" style="border:1px solid transparent;">
+          <span class="en">View my work</span><span class="fa">دیدن پروژه‌ها</span>
+          <span class="arrow-circle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+        <div class="social-row">
+          <a class="social-btn" href="https://github.com/TahaNasrollahii/" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.35-3.88-1.35-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.73-1.56-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A10.52 10.52 0 0023.5 12C23.5 5.73 18.27.5 12 .5z" />
+            </svg>
+          </a>
+          <a class="social-btn" href="mailto:tahanasrollahii@gmail.com" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6l9 7 9-7M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a class="social-btn" href="tel:+989014829025" aria-label="Phone">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
           </a>
         </div>
+      </div>
 
-        <div class="hero-links">
-          <a href="#" target="_blank" rel="noopener">github.com/<span class="en">add-your-username</span><span class="fa">نام‌کاربری خود را اضافه کنید</span></a>
-          <a href="mailto:tahanasrollahii@gmail.com">tahanasrollahii@gmail.com</a>
-          <a href="tel:+989014829025">+98 901 482 9025</a>
+      <div class="stats">
+        <div class="stat">
+          <div class="label mono"><span class="en">based in</span><span class="fa">محل سکونت</span></div>
+          <div class="value">Malard, Tehran</div>
+        </div>
+        <div class="stat">
+          <div class="label mono"><span class="en">focus</span><span class="fa">تمرکز</span></div>
+          <div class="value"><span class="en">APIs, async pipelines</span><span class="fa">API، پایپ‌لاین‌های
+              ناهم‌زمان</span></div>
+        </div>
+        <div class="stat">
+          <div class="label mono"><span class="en">now</span><span class="fa">اکنون</span></div>
+          <div class="value"><span class="en">Finishing CS degree</span><span class="fa">اتمام کارشناسی کامپیوتر</span>
+          </div>
         </div>
       </div>
 
-      <dl class="hero-side">
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="terminal-body mono" id="termBody"></div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="section-label reveal"><span class="en">/about</span><span class="fa">/درباره</span></div>
+      <h2 class="reveal"><span class="en">A bit about me</span><span class="fa">کمی درباره من</span></h2>
+
+      <div class="about-grid">
         <div>
-          <dt class="en">based in</dt><dt class="fa">محل سکونت</dt>
-          <dd>Malard, Tehran</dd>
+          <p class="about-text reveal">
+            <span class="en">My path started with a love for computers, which I've pursued through a <strong
+                style="color:var(--text);">Computer Engineering degree</strong>. To build a solid backend foundation, I
+              completed the <strong style="color:var(--accent); font-weight:600;">Python &amp; Django Bootcamp</strong>
+              at Kelaasor, then stayed on to help build the platform itself. Alongside that I run <strong
+                style="color:var(--accent); font-weight:600;">Titan Item</strong>, a small digital services brand. Today
+              I focus on async architecture, real-time systems, and APIs that hold up under real traffic.</span>
+            <span class="fa">علاقه من به کامپیوتر از همان ابتدا شکل گرفت و آن را در قالب <strong
+                style="color:var(--text);">کارشناسی مهندسی کامپیوتر</strong> دنبال کردم. برای پایه‌ریزی یک بک‌اند محکم،
+              <strong style="color:var(--accent); font-weight:600;">بوت‌کمپ پایتون و جنگو</strong> کلاسور را گذراندم و
+              بعد از آن در توسعه خود پلتفرم هم مشارکت کردم. در کنار این‌ها، برند خدمات دیجیتال کوچکی به نام <strong
+                style="color:var(--accent); font-weight:600;">Titan Item</strong> را هم اداره می‌کنم. امروز تمرکزم روی
+              معماری ناهم‌زمان، سیستم‌های real-time و API هایی است که زیر بار واقعی هم پایدار می‌مانند.</span>
+          </p>
+
+          <div class="config reveal">
+            <div class="config-row">
+              <div class="config-key"><span class="en">Backend</span><span class="fa">بک‌اند</span></div>
+              <div class="config-val">Python, Django, FastAPI</div>
+            </div>
+            <div class="config-row">
+              <div class="config-key"><span class="en">Database</span><span class="fa">پایگاه‌داده</span></div>
+              <div class="config-val">PostgreSQL, Redis</div>
+            </div>
+            <div class="config-row">
+              <div class="config-key"><span class="en">Async</span><span class="fa">ناهم‌زمان</span></div>
+              <div class="config-val">Celery, RabbitMQ</div>
+            </div>
+            <div class="config-row">
+              <div class="config-key"><span class="en">Auth</span><span class="fa">احراز هویت</span></div>
+              <div class="config-val">JWT, OTP auth</div>
+            </div>
+            <div class="config-row">
+              <div class="config-key"><span class="en">DevOps</span><span class="fa">DevOps</span></div>
+              <div class="config-val">Docker, Git, CI/CD</div>
+            </div>
+          </div>
         </div>
+
+        <div class="skills-grid reveal">
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4" />
+                <polyline points="14 2 14 8 20 8" />
+                <path d="M3 15h6" />
+                <path d="M3 18h6" />
+              </svg>
+            </div>
+            <h3><span class="en">Backend &amp; Database</span><span class="fa">بک‌اند و پایگاه‌داده</span></h3>
+            <p>Python · Django · DRF · FastAPI · SQLAlchemy · PostgreSQL · Redis · Celery</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <h3><span class="en">Auth &amp; Reliability</span><span class="fa">احراز هویت و پایداری</span></h3>
+            <p>JWT · OTP auth · Rate limiting · RESTful API design</p>
+          </div>
+          <div class="skill-card" style="grid-column: 1 / -1;">
+            <div class="skill-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <h3><span class="en">DevOps &amp; AI</span><span class="fa">DevOps و هوش مصنوعی</span></h3>
+            <p>Docker · Git · CI/CD · Pytest · LLM API integration · Prompt engineering</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section id="work">
+      <div class="section-label reveal"><span class="en">/work</span><span class="fa">/پروژه‌ها</span></div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <h2 class="reveal"><span class="en">Selected work</span><span class="fa">پروژه‌های منتخب</span></h2>
+        <div class="project-scroll-controls reveal">
+          <button class="scroll-btn" id="scrollLeft" aria-label="Scroll left">←</button>
+          <button class="scroll-btn" id="scrollRight" aria-label="Scroll right">→</button>
+        </div>
+      </div>
+
+      <div class="project-scroller reveal" id="projectScroller">
+
+        <a href="https://kelaasor.com/" target="_blank" class="project-card" style="display:block; text-decoration:none; color:inherit;">
+          <div class="project-art">
+            <div
+              style="width:100%; height:100%; background:linear-gradient(150deg,#1F2937,#4B5A75); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700;">
+              Kelaasor</div>
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <div class="project-title">Kelaasor</div>
+              <div class="project-role"><span class="en">Contract</span><span class="fa">پروژه کارفرمایی</span></div>
+            </div>
+            <p class="project-desc">
+              <span class="en">Bootcamp management platform. Built the core DRF backend — listings, chapters, an
+                enrollment state machine with buy-now-pay-later, and a Markdown blog.</span>
+              <span class="fa">پلتفرم مدیریت بوت‌کمپ. توسعه بک‌اند اصلی با DRF — لیستینگ، فصل‌ها، ماشین‌حالت ثبت‌نام با
+                خرید قسطی، و بلاگ Markdown.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">Django</span><span class="tag">DRF</span><span class="tag">PostgreSQL</span><span
+                class="tag">Docker</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/TahaNasrollahii/Eventra" target="_blank" class="project-card" style="display:block; text-decoration:none; color:inherit;">
+          <div class="project-art">
+            <div
+              style="width:100%; height:100%; background:linear-gradient(150deg,#3457D5,#7C9CFB); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700;">
+              Eventra</div>
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <div class="project-title">Eventra</div>
+              <div class="project-role"><span class="en">Personal project</span><span class="fa">پروژه شخصی</span></div>
+            </div>
+            <p class="project-desc">
+              <span class="en">Async monitoring assistant that watches RSS feeds and webpages for change, powered by
+                Groq LLaMA 3.3, with real-time WebSocket alerts and daily AI digests.</span>
+              <span class="fa">دستیار مانیتورینگ ناهم‌زمان که فیدهای RSS و صفحات وب را برای تشخیص تغییر رصد می‌کند؛ با
+                Groq LLaMA 3.3، هشدار real-time و خلاصه روزانه هوش مصنوعی.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">FastAPI</span><span class="tag">Celery</span><span class="tag">Redis</span><span
+                class="tag">Groq LLM</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/TahaNasrollahii/briefly" target="_blank" class="project-card" style="display:block; text-decoration:none; color:inherit;">
+          <div class="project-art">
+            <div
+              style="width:100%; height:100%; background:linear-gradient(150deg,#B5804A,#E3B57C); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700;">
+              Briefly</div>
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <div class="project-title">Briefly</div>
+              <div class="project-role"><span class="en">Personal project</span><span class="fa">پروژه شخصی</span></div>
+            </div>
+            <p class="project-desc">
+              <span class="en">Meeting transcription and summarization service. Splits audio chunking, transcription and
+                AI inference across dedicated Celery queues so slow calls never block lighter jobs.</span>
+              <span class="fa">سرویس تبدیل گفتار جلسات به متن و خلاصه‌سازی. تقسیم پردازش صوت، رونویسی و استنتاج هوش
+                مصنوعی به صف‌های اختصاصی Celery.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">FastAPI</span><span class="tag">RabbitMQ</span><span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/TahaNasrollahii/Learnova" target="_blank" class="project-card" style="display:block; text-decoration:none; color:inherit;">
+          <div class="project-art">
+            <div
+              style="width:100%; height:100%; background:linear-gradient(150deg,#2F6F4F,#79B896); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700;">
+              StudyMate</div>
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <div class="project-title">StudyMate</div>
+              <div class="project-role"><span class="en">Personal project</span><span class="fa">پروژه شخصی</span></div>
+            </div>
+            <p class="project-desc">
+              <span class="en">AI study assistant generating summaries, quizzes and study plans. JWT auth with
+                refresh-token rotation and Redis-cached LLM responses.</span>
+              <span class="fa">دستیار مطالعه هوشمند برای تولید خلاصه، آزمون و برنامه مطالعاتی. احراز هویت JWT با چرخش
+                refresh-token و کش پاسخ‌های LLM در Redis.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">FastAPI</span><span class="tag">Redis</span><span class="tag">OAuth2</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE TIMELINE ============ -->
+    <section class="timeline-section">
+      <div class="section-label reveal"><span class="en">/experience</span><span class="fa">/سوابق</span></div>
+      <h2 class="reveal"><span class="en">Experience timeline</span><span class="fa">سوابق کاری</span></h2>
+
+      <div class="exp-timeline">
+        <div class="exp-item dot-active reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <h3 class="exp-company">Kelaasor <span class="exp-current-badge"><span class="en">current</span><span
+                    class="fa">فعلی</span></span></h3>
+              <div class="exp-date">2026</div>
+            </div>
+            <div class="exp-role"><span class="en">Django Developer</span><span class="fa">توسعه‌دهنده جنگو</span></div>
+            <p class="exp-desc">
+              <span class="en">Contributed to backend development of the Kelaasor bootcamp platform as part of the
+                engineering team — listings, enrollment logic, and blog module.</span>
+              <span class="fa">مشارکت در توسعه بک‌اند پلتفرم بوت‌کمپ کلاسور به‌عنوان بخشی از تیم مهندسی — لیستینگ، منطق
+                ثبت‌نام و ماژول بلاگ.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">Django</span><span class="tag">DRF</span><span class="tag">PostgreSQL</span><span
+                class="tag">Celery</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <h3 class="exp-company">Avid Samaneh Raymon</h3>
+              <div class="exp-date">Oct 2020 → Dec 2020</div>
+            </div>
+            <div class="exp-role"><span class="en">.NET Developer — Internship</span><span class="fa">توسعه‌دهنده دات‌نت
+                — کارآموزی</span></div>
+            <p class="exp-desc">
+              <span class="en">Short-term internship covering .NET fundamentals and introductory team-based software
+                workflows.</span>
+              <span class="fa">کارآموزی کوتاه‌مدت شامل مبانی دات‌نت و آشنایی با گردش‌کار تیمی توسعه نرم‌افزار.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education">
+      <div class="section-label reveal"><span class="en">/education</span><span class="fa">/تحصیلات</span></div>
+      <h2 class="reveal"><span class="en">Education</span><span class="fa">تحصیلات</span></h2>
+
+      <div class="edu-item reveal">
         <div>
-          <dt class="en">focus</dt><dt class="fa">تمرکز</dt>
-          <dd><span class="en">APIs, async pipelines, real-time systems</span><span class="fa">API، پایپ‌لاین‌های ناهم‌زمان، سیستم‌های real-time</span></dd>
+          <div class="edu-degree"><span class="en">Bachelor, Computer Engineering — Software</span><span
+              class="fa">کارشناسی مهندسی کامپیوتر — نرم‌افزار</span></div>
+          <div class="edu-school">Islamic Azad University of Karaj</div>
         </div>
+        <div class="edu-dates"><span class="en">2026 → Present</span><span class="fa">۲۰۲۶ → اکنون</span><br>Karaj, Iran
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
         <div>
-          <dt class="en">now</dt><dt class="fa">اکنون</dt>
-          <dd><span class="en">Finishing my CS degree while shipping backend projects</span><span class="fa">در حال اتمام کارشناسی کامپیوتر، همزمان با توسعه پروژه‌های بک‌اند</span></dd>
+          <div class="edu-degree"><span class="en">Associate, Computer Engineering — Software</span><span
+              class="fa">کاردانی مهندسی کامپیوتر — نرم‌افزار</span></div>
+          <div class="edu-school">Islamic Azad University of Karaj</div>
         </div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ============ ABOUT ============ -->
-  <section class="about" id="about">
-    <div class="section-inner">
-      <p class="eyebrow-path">/about</p>
-      <h2><span class="en">A bit about me</span><span class="fa">کمی درباره من</span></h2>
-
-      <p class="about-text">
-        <span class="en">My path started with a love for computers, which I've pursued through a <strong>Computer Engineering degree</strong>. To build a solid backend foundation, I completed the <strong>Python &amp; Django Bootcamp</strong> at Kelaasor, then stayed on to help build the platform itself. Alongside that I run <strong>Titan Item</strong>, a small digital services brand. Today I focus on async architecture, real-time systems, and APIs that hold up under real traffic.</span>
-        <span class="fa">علاقه من به کامپیوتر از همان ابتدا شکل گرفت و آن را در قالب <strong>کارشناسی مهندسی کامپیوتر</strong> دنبال کردم. برای پایه‌ریزی یک بک‌اند محکم، <strong>بوت‌کمپ پایتون و جنگو</strong> کلاسور را گذراندم و بعد از آن در توسعه خود پلتفرم هم مشارکت کردم. در کنار این‌ها، برند خدمات دیجیتال کوچکی به نام <strong>Titan Item</strong> را هم اداره می‌کنم. امروز تمرکزم روی معماری ناهم‌زمان، سیستم‌های real-time و API هایی است که زیر بار واقعی هم پایدار می‌مانند.</span>
-      </p>
-
-      <div class="skill-groups">
-        <div class="skill-group">
-          <h3><span class="en">Backend &amp; Database</span><span class="fa">بک‌اند و پایگاه‌داده</span></h3>
-          <p class="tag-line">Python · Django · DRF · FastAPI · SQLAlchemy · PostgreSQL · Redis · Celery</p>
-        </div>
-        <div class="skill-group">
-          <h3><span class="en">Auth &amp; Reliability</span><span class="fa">احراز هویت و پایداری</span></h3>
-          <p class="tag-line">JWT · OTP auth · Rate limiting · RESTful API design</p>
-        </div>
-        <div class="skill-group">
-          <h3><span class="en">DevOps &amp; AI</span><span class="fa">DevOps و هوش مصنوعی</span></h3>
-          <p class="tag-line">Docker · Git · CI/CD · Pytest · LLM API integration · Prompt engineering</p>
+        <div class="edu-dates"><span class="en">2024 → 2026</span><span class="fa">۲۰۲۴ → ۲۰۲۶</span><br>Karaj, Iran
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ WORK ============ -->
-  <section class="work" id="work">
-    <div class="section-inner">
-      <p class="eyebrow-path">/work</p>
-      <h2><span class="en">Selected work</span><span class="fa">پروژه‌های منتخب</span></h2>
-
-      <div class="work-list">
-
-        <article class="work-card">
-          <div class="work-cover cover-1" aria-hidden="true"><span>Eventra</span></div>
-          <div class="work-body">
-            <div class="work-head">
-              <h3>Eventra</h3>
-              <span class="work-tag-type"><span class="en">Personal project</span><span class="fa">پروژه شخصی</span></span>
-            </div>
-            <p><span class="en">Async monitoring assistant that watches RSS feeds and webpages for change, powered by Groq LLaMA 3.3, with real-time WebSocket alerts and daily AI digests.</span><span class="fa">دستیار مانیتورینگ ناهم‌زمان که فیدهای RSS و صفحات وب را برای تشخیص تغییر رصد می‌کند؛ با Groq LLaMA 3.3، هشدار real-time و خلاصه روزانه هوش مصنوعی.</span></p>
-            <p class="work-tags">FastAPI · Celery + RabbitMQ · Redis · PostgreSQL · Groq LLM · Docker</p>
-          </div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-cover cover-2" aria-hidden="true"><span>Kelaasor</span></div>
-          <div class="work-body">
-            <div class="work-head">
-              <h3>Kelaasor</h3>
-              <span class="work-tag-type"><span class="en">Contract</span><span class="fa">پروژه کارفرمایی</span></span>
-            </div>
-            <p><span class="en">Bootcamp management platform. Built the core DRF backend — listings, chapters, an enrollment state machine with buy-now-pay-later, and a Markdown blog.</span><span class="fa">پلتفرم مدیریت بوت‌کمپ. توسعه بک‌اند اصلی با DRF — لیستینگ، فصل‌ها، ماشین‌حالت ثبت‌نام با خرید قسطی، و بلاگ Markdown.</span></p>
-            <p class="work-tags">Django · DRF · PostgreSQL · Redis · Celery · Docker</p>
-          </div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-cover cover-3" aria-hidden="true"><span>Briefly</span></div>
-          <div class="work-body">
-            <div class="work-head">
-              <h3>Briefly</h3>
-              <span class="work-tag-type"><span class="en">Personal project</span><span class="fa">پروژه شخصی</span></span>
-            </div>
-            <p><span class="en">Meeting transcription and summarization service. Splits audio chunking, transcription and AI inference across dedicated Celery queues so slow calls never block lighter jobs.</span><span class="fa">سرویس تبدیل گفتار جلسات به متن و خلاصه‌سازی. تقسیم پردازش صوت، رونویسی و استنتاج هوش مصنوعی به صف‌های اختصاصی Celery.</span></p>
-            <p class="work-tags">FastAPI · RabbitMQ · Celery · PostgreSQL · Redis · Docker</p>
-          </div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-cover cover-4" aria-hidden="true"><span>StudyMate</span></div>
-          <div class="work-body">
-            <div class="work-head">
-              <h3>StudyMate</h3>
-              <span class="work-tag-type"><span class="en">Personal project</span><span class="fa">پروژه شخصی</span></span>
-            </div>
-            <p><span class="en">AI study assistant generating summaries, quizzes and study plans. JWT auth with refresh-token rotation and Redis-cached LLM responses.</span><span class="fa">دستیار مطالعه هوشمند برای تولید خلاصه، آزمون و برنامه مطالعاتی. احراز هویت JWT با چرخش refresh-token و کش پاسخ‌های LLM در Redis.</span></p>
-            <p class="work-tags">FastAPI · PostgreSQL · Redis · OAuth2 · Docker</p>
-          </div>
-        </article>
-
+      <div class="edu-item reveal" style="border-bottom:none;">
+        <div>
+          <div class="edu-degree"><span class="en">Back-End Python-Django Bootcamp</span><span class="fa">بوت‌کمپ بک‌اند
+              پایتون-جنگو</span></div>
+          <div class="edu-school">Kelaasor</div>
+        </div>
+        <div class="edu-dates"><span class="en">May 2025 → Aug 2025</span><span class="fa">اردیبهشت ۱۴۰۴ → مرداد
+            ۱۴۰۴</span></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ EXPERIENCE TIMELINE ============ -->
-  <section class="timeline-section">
-    <div class="section-inner">
-      <h2><span class="en">Experience timeline</span><span class="fa">سوابق کاری</span></h2>
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+      <div class="section-label reveal"><span class="en">/contact</span><span class="fa">/تماس</span></div>
 
-      <ol class="timeline">
-        <li>
-          <div class="tl-top">
-            <h3>Kelaasor <span class="tl-tag current en">current</span><span class="tl-tag current fa">فعلی</span></h3>
-            <span class="tl-date">2026</span>
-          </div>
-          <p class="tl-role"><span class="en">Django Developer</span><span class="fa">توسعه‌دهنده جنگو</span></p>
-          <p class="tl-desc"><span class="en">Contributed to backend development of the Kelaasor bootcamp platform as part of the engineering team — listings, enrollment logic, and blog module.</span><span class="fa">مشارکت در توسعه بک‌اند پلتفرم بوت‌کمپ کلاسور به‌عنوان بخشی از تیم مهندسی — لیستینگ، منطق ثبت‌نام و ماژول بلاگ.</span></p>
-          <p class="work-tags">Django · DRF · PostgreSQL · Celery</p>
-        </li>
-        <li>
-          <div class="tl-top">
-            <h3>Avid Samaneh Raymon</h3>
-            <span class="tl-date">Oct 2020 → Dec 2020</span>
-          </div>
-          <p class="tl-role"><span class="en">.NET Developer — Internship</span><span class="fa">توسعه‌دهنده دات‌نت — کارآموزی</span></p>
-          <p class="tl-desc"><span class="en">Short-term internship covering .NET fundamentals and introductory team-based software workflows.</span><span class="fa">کارآموزی کوتاه‌مدت شامل مبانی دات‌نت و آشنایی با گردش‌کار تیمی توسعه نرم‌افزار.</span></p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ EDUCATION ============ -->
-  <section class="education" id="education">
-    <div class="section-inner">
-      <p class="eyebrow-path">/education</p>
-      <h2><span class="en">Education</span><span class="fa">تحصیلات</span></h2>
-
-      <div class="edu-list">
-        <div class="edu-row">
-          <div>
-            <h3><span class="en">Bachelor, Computer Engineering — Software</span><span class="fa">کارشناسی مهندسی کامپیوتر — نرم‌افزار</span></h3>
-            <p class="edu-org">Islamic Azad University of Karaj</p>
-          </div>
-          <div class="edu-when">
-            <span class="en">2026 → Present</span><span class="fa">۲۰۲۶ → اکنون</span><br>Karaj, Iran
-          </div>
+      <div class="contact-hero reveal">
+        <div>
+          <h2><span class="en">Let's build something reliable.</span><span class="fa">بیایید چیزی قابل‌اعتماد
+              بسازیم.</span></h2>
+          <p>
+            <span class="en">Open to internships and junior backend roles. Feel free to reach out any time.</span>
+            <span class="fa">آماده برای کارآموزی و موقعیت‌های جونیور بک‌اند. هر زمان پیام بدهید.</span>
+          </p>
         </div>
-        <div class="edu-row">
-          <div>
-            <h3><span class="en">Associate, Computer Engineering — Software</span><span class="fa">کاردانی مهندسی کامپیوتر — نرم‌افزار</span></h3>
-            <p class="edu-org">Islamic Azad University of Karaj</p>
-          </div>
-          <div class="edu-when">
-            <span class="en">2024 → 2026</span><span class="fa">۲۰۲۴ → ۲۰۲۶</span><br>Karaj, Iran
-          </div>
-        </div>
-        <div class="edu-row edu-row-compact">
-          <div>
-            <h3><span class="en">Back-End Python-Django Bootcamp</span><span class="fa">بوت‌کمپ بک‌اند پایتون-جنگو</span></h3>
-            <p class="edu-org">Kelaasor</p>
-          </div>
-          <div class="edu-when">
-            <span class="en">May 2025 → Aug 2025</span><span class="fa">اردیبهشت ۱۴۰۴ → مرداد ۱۴۰۴</span>
-          </div>
-        </div>
+        <a href="mailto:tahanasrollahii@gmail.com" class="contact-cta">
+          <span class="en">Say hello</span><span class="fa">در تماس باشیم</span>
+        </a>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="contact" id="contact">
-    <div class="section-inner">
-      <p class="eyebrow-path">/contact</p>
-      <h2><span class="en">Let's build something reliable.</span><span class="fa">بیایید چیزی قابل‌اعتماد بسازیم.</span></h2>
-      <p class="contact-sub">
-        <span class="en">Open to internships and junior backend roles. Feel free to reach out any time.</span>
-        <span class="fa">آماده برای کارآموزی و موقعیت‌های جونیور بک‌اند. هر زمان پیام بدهید.</span>
-      </p>
+      <div class="contact-grid reveal">
+        <a href="mailto:tahanasrollahii@gmail.com" class="contact-item">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6l9 7 9-7M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <div class="k">Email</div>
+            <div class="v">tahanasrollahii@gmail.com</div>
+          </div>
+        </a>
 
-      <a href="mailto:tahanasrollahii@gmail.com" class="btn btn-primary">
-        <span class="en">Say hello</span><span class="fa">در تماس باشیم</span>
+        <a href="tel:+989014829025" class="contact-item">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <div class="k">Phone</div>
+            <div class="v">+98 901 482 9025</div>
+          </div>
+        </a>
+
+        <a href="https://github.com/TahaNasrollahii/" target="_blank" rel="noopener" class="contact-item">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.35-3.88-1.35-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.73-1.56-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A10.52 10.52 0 0023.5 12C23.5 5.73 18.27.5 12 .5z" />
+            </svg>
+          </div>
+          <div>
+            <div class="k">GitHub</div>
+            <div class="v"><span class="en">TahaNasrollahii</span><span class="fa">TahaNasrollahii</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+      <span>© <span id="year"></span> Taha Nasrollahi</span>
+      <a href="#top" style="display:flex; align-items:center; gap:4px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="en">top</span><span class="fa">بالا</span>
       </a>
-
-      <div class="hero-links contact-links">
-        <a href="mailto:tahanasrollahii@gmail.com">tahanasrollahii@gmail.com</a>
-        <a href="tel:+989014829025">+98 901 482 9025</a>
-        <a href="#" target="_blank" rel="noopener">github.com/<span class="en">add-your-username</span><span class="fa">نام‌کاربری خود را اضافه کنید</span></a>
-      </div>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer class="site-footer">
-  <div class="section-inner footer-inner">
-    <span>© <span id="year"></span> Taha Nasrollahi</span>
-    <a href="#top"><span class="en">back to top</span><span class="fa">بازگشت به بالا</span></a>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>

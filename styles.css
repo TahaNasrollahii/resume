@@ -151,7 +151,7 @@ h1 .cursor-blink{ display:inline-block; width:3px; background:var(--accent); mar
 .terminal{ background: var(--surface); border:1px solid var(--border-strong); border-radius:6px; overflow:hidden; opacity:0; animation: fadeUp .6s ease 1.45s forwards; box-shadow: 0 20px 60px -30px rgba(0,0,0,.6); }
 .terminal-bar{ display:flex; align-items:center; gap:6px; padding:10px 14px; border-bottom:1px solid var(--border); }
 .terminal-bar span{ width:9px; height:9px; border-radius:50%; background: var(--border-strong); }
-.terminal-body{ padding:20px 22px 24px; font-family:var(--font-mono); font-size:13.5px; color:#c9cfda; min-height:110px; }
+.terminal-body{ padding:20px 22px 24px; font-family:var(--font-mono); font-size:13.5px; color:#c9cfda; height:150px; box-sizing:border-box; overflow:hidden; }
 .terminal-body .prompt{ color: var(--accent); }
 .terminal-body .line{ white-space:pre-wrap; word-break:break-word; margin:0 0 4px; }
 .terminal-body .out{ color: var(--muted); margin:0 0 14px; }
@@ -171,8 +171,8 @@ h2{ font-size: clamp(24px,4vw,30px); font-weight:700; margin:0 0 var(--space-3);
 .big-word::after{ content:''; position:absolute; left:2px; bottom:-10px; width:64px; height:3px; border-radius:3px; background: linear-gradient(90deg, var(--accent), transparent); }
 
 /* ---------- ABOUT ---------- */
-.about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-5); align-items:center; }
-.about-text{ color:#cfd3db; font-size:16px; margin-bottom: var(--space-4); }
+.about-grid{ display:flex; flex-direction:column; gap: var(--space-3); }
+.about-text{ color:#cfd3db; font-size:16px; margin-bottom: var(--space-2); max-width:85ch; }
 .config{ background: var(--surface); border:1px solid var(--border-strong); border-radius:6px; padding:22px 24px; font-family:var(--font-mono); font-size:13.5px; }
 .config-row{ display:grid; grid-template-columns: 110px 1fr; gap:12px; padding:9px 0; border-bottom:1px dashed var(--border); opacity:0; transform: translateX(-8px); transition: opacity .5s, transform .5s; }
 .config-row.in-view{ opacity:1; transform: translateX(0); }
@@ -180,7 +180,7 @@ h2{ font-size: clamp(24px,4vw,30px); font-weight:700; margin:0 0 var(--space-3);
 .config-key{ color: var(--muted); }
 .config-val{ color: var(--text); }
 
-.skills-grid{ display:flex; flex-direction:column; gap:14px; margin-top: var(--space-4); }
+.skills-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; }
 .skill-card{
   background: var(--light); color: var(--light-text); border-radius:14px; padding:18px 20px;
   opacity:0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease, box-shadow .25s ease, translate .25s ease;

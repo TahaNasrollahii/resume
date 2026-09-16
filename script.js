@@ -107,11 +107,18 @@
     }
 
     sections.forEach(function (sec) {
-      var top = sec.offsetTop - 150;
-      if (scrollY >= top) {
+      var rect = sec.getBoundingClientRect();
+      // If the top of the section is within the top half of the screen
+      if (rect.top <= window.innerHeight * 0.5) {
         currentId = sec.getAttribute("id");
       }
     });
+
+    // Fallback: if we are at the very bottom, make sure the last section is active
+    // in case it's too short to reach the 50% threshold
+    if (Math.ceil(window.innerHeight + scrollY) >= document.body.offsetHeight - 20) {
+      currentId = sections[sections.length - 1].getAttribute("id");
+    }
 
     var activeAnchor = null;
     navAnchors.forEach(function (a) {
@@ -223,70 +230,75 @@
   /* ---------- Terminal Typing Animation ---------- */
   var termBody = document.getElementById("termBody");
   if (termBody) {
-    var lines = [
-      { prompt: "user@taha:~$ ", text: "python manage.py runserver", type: "cmd" },
-      { text: "Starting development server at http://127.0.0.1:8000/", type: "out" },
-      { text: "Quit the server with CONTROL-C.", type: "out" },
-      { prompt: "user@taha:~$ ", text: "celery -A core worker -l info", type: "cmd" },
-      { text: "[tasks]\n  . core.tasks.process_data\n  . core.tasks.send_email", type: "out" },
-      { text: "celery@taha ready.", type: "out" }
+    var commands = [
+      {
+        cmd: "python manage.py runserver",
+        out: "Starting development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C."
+      },
+      {
+        cmd: "celery -A core worker -l info",
+        out: "[tasks]\n  . core.tasks.process_data\n  . core.tasks.send_email\ncelery@taha ready."
+      },
+      {
+        cmd: "docker compose up -d",
+        out: "✔ Container redis-cache   Started\n✔ Container postgres-db   Started\n✔ Container web-api       Started"
+      }
     ];
-    
-    var lineIdx = 0;
+
+    var cmdIdx = 0;
     var charIdx = 0;
-    var currentEl = null;
+    var isDeleting = false;
+    
+    // Create static prompt line
+    var lineEl = document.createElement("div");
+    lineEl.className = "line-fade line-fade-in line";
+    lineEl.innerHTML = '<span class="prompt">user@taha:~$ </span><span class="text"></span><span class="cursor"></span>';
+    termBody.appendChild(lineEl);
+    
+    var textSpan = lineEl.querySelector(".text");
+    var outEl = null;
 
     function typeTerminal() {
-      if (lineIdx >= lines.length) return;
-      
-      var lineData = lines[lineIdx];
-      
-      if (!currentEl) {
-        currentEl = document.createElement("div");
-        currentEl.className = "line-fade";
-        if (lineData.type === "cmd") {
-          currentEl.className += " line";
-          currentEl.innerHTML = '<span class="prompt">' + lineData.prompt + '</span><span class="text"></span>';
-        } else {
-          currentEl.className += " out";
-          currentEl.innerHTML = '<span class="text"></span>';
-        }
-        termBody.appendChild(currentEl);
-        
-        // Trigger fade in
-        setTimeout(function() {
-          currentEl.classList.add("line-fade-in");
-        }, 50);
-      }
+      var currentCmd = commands[cmdIdx];
 
-      if (lineData.type === "cmd") {
-        var textSpan = currentEl.querySelector(".text");
-        if (charIdx < lineData.text.length) {
-          textSpan.textContent += lineData.text.charAt(charIdx);
-          charIdx++;
-          setTimeout(typeTerminal, Math.random() * 50 + 30);
+      if (isDeleting) {
+        // Backspacing
+        if (outEl) {
+           outEl.remove(); // clear output instantly
+           outEl = null;
+        }
+        
+        if (charIdx > 0) {
+          charIdx--;
+          textSpan.textContent = currentCmd.cmd.substring(0, charIdx);
+          setTimeout(typeTerminal, 30);
         } else {
-          lineIdx++;
-          charIdx = 0;
-          currentEl = null;
-          setTimeout(typeTerminal, 400);
+          isDeleting = false;
+          cmdIdx = (cmdIdx + 1) % commands.length;
+          setTimeout(typeTerminal, 500);
         }
       } else {
-        var textSpan = currentEl.querySelector(".text");
-        textSpan.textContent = lineData.text;
-        lineIdx++;
-        charIdx = 0;
-        currentEl = null;
-        setTimeout(typeTerminal, 600);
+        // Typing
+        if (charIdx < currentCmd.cmd.length) {
+          textSpan.textContent += currentCmd.cmd.charAt(charIdx);
+          charIdx++;
+          setTimeout(typeTerminal, Math.random() * 50 + 40);
+        } else {
+          // Done typing command, show output
+          outEl = document.createElement("div");
+          outEl.className = "line-fade line-fade-in out";
+          outEl.innerHTML = '<span class="text">' + currentCmd.out.replace(/\n/g, '<br>') + '</span>';
+          termBody.appendChild(outEl);
+          
+          setTimeout(function() {
+            isDeleting = true;
+            typeTerminal();
+          }, 3000); // Wait 3 seconds before deleting
+        }
       }
     }
     
-    // Add cursor
-    var cursor = document.createElement("span");
-    cursor.className = "cursor";
-    
-    // Start after delay
-    setTimeout(typeTerminal, 1800);
+    setTimeout(typeTerminal, 1500);
   }
 
   /* ---------- Project Horizontal Scrolling ---------- */

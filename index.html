@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taha Nasrollahi — Backend Developer</title>
+<meta name="description" content="Taha Nasrollahi — Backend developer specializing in Django, FastAPI, async task queues and real-time systems.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-lang="en">
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark" aria-label="Taha Nasrollahi — home">
+      <span class="mark-box">TN</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work" class="en">Projects</a><a href="#work" class="fa">پروژه‌ها</a>
+      <a href="#experience" class="en">Experience</a><a href="#experience" class="fa">سوابق</a>
+      <a href="#skills" class="en">Skills</a><a href="#skills" class="fa">مهارت‌ها</a>
+      <a href="#contact" class="en">Contact</a><a href="#contact" class="fa">تماس</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+        <span class="lt-option" data-set="en">EN</span>
+        <span class="lt-divider">/</span>
+        <span class="lt-option" data-set="fa">FA</span>
+      </button>
+      <a class="btn btn-ghost nav-resume-btn" href="assets/Taha-Nasrollahi-Resume.pdf" download>
+        <span class="en">Résumé</span><span class="fa">رزومه</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="status-line">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span class="en">Open to internships &amp; junior backend roles</span>
+          <span class="fa">آماده برای موقعیت‌های کارآموزی و جونیور بک‌اند</span>
+        </p>
+
+        <h1 class="hero-title">
+          <span class="en">Backend systems<br>that stay awake<br>so you don't have to.</span>
+          <span class="fa">سیستم‌های بک‌اندی<br>که همیشه بیدارند،<br>تا شما نگران نباشید.</span>
+        </h1>
+
+        <p class="hero-sub">
+          <span class="en">I'm Taha Nasrollahi, a backend developer building async APIs, event-driven pipelines and real-time monitoring with Django, FastAPI, Celery and Redis.</span>
+          <span class="fa">من طاها نصراللهی هستم؛ توسعه‌دهنده بک‌اند که با جنگو، فست‌ای‌پی‌آی، سلری و ردیس، روی API های ناهم‌زمان، پایپ‌لاین‌های رویداد-محور و سیستم‌های مانیتورینگ real-time کار می‌کند.</span>
+        </p>
+
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">
+            <span class="en">View projects</span><span class="fa">دیدن پروژه‌ها</span>
+          </a>
+          <a href="mailto:tahanasrollahii@gmail.com" class="btn btn-ghost">
+            <span class="en">Say hello</span><span class="fa">در تماس باشیم</span>
+          </a>
+        </div>
+
+        <dl class="hero-meta">
+          <div>
+            <dt class="en">Based in</dt><dt class="fa">محل سکونت</dt>
+            <dd>Malard, Tehran, Iran</dd>
+          </div>
+          <div>
+            <dt class="en">Studying</dt><dt class="fa">تحصیلات</dt>
+            <dd><span class="en">B.Sc. Computer Engineering, IAU Karaj</span><span class="fa">کارشناسی مهندسی کامپیوتر، دانشگاه آزاد کرج</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-panel" role="img" aria-label="Animated diagram of an async job pipeline moving from queued to processing to delivered">
+        <div class="panel-frame">
+          <div class="panel-head">
+            <span class="panel-dot"></span>
+            <span class="panel-name">job-queue.live</span>
+            <span class="panel-clock" id="tehranClock">--:--:--</span>
+          </div>
+
+          <div class="pipeline" aria-hidden="true">
+            <div class="stage">
+              <span class="stage-label"><span class="en">queued</span><span class="fa">در صف</span></span>
+              <div class="track">
+                <span class="chip c1"></span>
+                <span class="chip c2"></span>
+                <span class="chip c3"></span>
+              </div>
+            </div>
+            <div class="stage">
+              <span class="stage-label"><span class="en">processing</span><span class="fa">در حال پردازش</span></span>
+              <div class="track track-mid">
+                <span class="chip c4"></span>
+                <span class="chip c5"></span>
+              </div>
+            </div>
+            <div class="stage">
+              <span class="stage-label"><span class="en">delivered</span><span class="fa">تحویل شد</span></span>
+              <div class="track track-end">
+                <span class="chip c6"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-log">
+            <p><span class="log-tag">celery</span> <span class="en">worker picked up task #4471</span><span class="fa">worker وظیفه #4471 را برداشت</span></p>
+            <p><span class="log-tag ok">200</span> <span class="en">webhook delivered in 84ms</span><span class="fa">webhook در ۸۴ میلی‌ثانیه تحویل شد</span></p>
+            <p><span class="log-tag">redis</span> <span class="en">cache warm, 0 misses</span><span class="fa">کش گرم است، بدون miss</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / STATS ============ -->
+  <section class="about" id="about">
+    <div class="section-inner about-grid">
+      <div class="about-copy">
+        <h2>
+          <span class="en">A backend built on making things reliable.</span>
+          <span class="fa">بک‌اندی بنا شده روی قابل‌اعتماد بودن.</span>
+        </h2>
+        <p>
+          <span class="en">I design REST APIs, background workers and data models that hold up under real traffic — not just in a demo. Lately that means Celery pipelines split across dedicated queues, WebSocket layers that replace polling, and LLM features that fail gracefully when the model doesn't. Outside of client work, I run <strong>Titan Item</strong>, a small digital services brand.</span>
+          <span class="fa">من روی API های REST، ورکرهای پس‌زمینه و مدل‌های داده‌ای کار می‌کنم که زیر بار واقعی هم پایدار بمانند، نه فقط در دمو. این روزها یعنی پایپ‌لاین‌های سلری تقسیم‌شده روی صف‌های اختصاصی، لایه‌های WebSocket به‌جای polling، و قابلیت‌های مبتنی بر LLM که در صورت خطای مدل هم درست مدیریت می‌شوند. جدا از پروژه‌های مشتری، برند خدمات دیجیتال کوچکی به نام <strong>Titan Item</strong> را هم اداره می‌کنم.</span>
+        </p>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-num" data-count="6">0</span>
+          <span class="stat-label"><span class="en">Shipped projects</span><span class="fa">پروژه تحویل‌شده</span></span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="5">0</span>
+          <span class="stat-label"><span class="en">Async task queues built</span><span class="fa">صف وظیفه ناهم‌زمان ساخته‌شده</span></span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="3">0</span>
+          <span class="stat-label"><span class="en">LLM-integrated services</span><span class="fa">سرویس مجهز به LLM</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="skills" id="skills">
+    <div class="section-inner">
+      <h2>
+        <span class="en">Toolbox</span><span class="fa">جعبه‌ابزار</span>
+      </h2>
+
+      <div class="skill-grid">
+        <div class="skill-card">
+          <h3><span class="en">Languages &amp; Frameworks</span><span class="fa">زبان‌ها و فریم‌ورک‌ها</span></h3>
+          <ul class="tag-row">
+            <li>Python</li><li>Django</li><li>DRF</li><li>FastAPI</li><li>SQLAlchemy</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="en">Databases</span><span class="fa">پایگاه‌داده</span></h3>
+          <ul class="tag-row">
+            <li>PostgreSQL</li><li>Redis</li><li>Alembic</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="en">DevOps &amp; Testing</span><span class="fa">DevOps و تست</span></h3>
+          <ul class="tag-row">
+            <li>Docker</li><li>Git</li><li>CI/CD</li><li>Celery</li><li>Pytest</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="en">Auth &amp; API Design</span><span class="fa">احراز هویت و طراحی API</span></h3>
+          <ul class="tag-row">
+            <li>JWT</li><li>OTP Auth</li><li>Rate Limiting</li><li>RESTful API Design</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="en">AI Integration</span><span class="fa">یکپارچه‌سازی هوش مصنوعی</span></h3>
+          <ul class="tag-row">
+            <li>LLM API Integration</li><li>Prompt Engineering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="work" id="work">
+    <div class="section-inner">
+      <h2><span class="en">Selected projects</span><span class="fa">پروژه‌های منتخب</span></h2>
+
+      <ol class="timeline">
+
+        <li class="tl-item">
+          <div class="tl-date">01/2026 – 02/2026</div>
+          <div class="tl-content">
+            <h3>Eventra <span class="tl-sub en">AI-powered personal monitoring assistant</span><span class="tl-sub fa">دستیار شخصی مانیتورینگ مبتنی بر هوش مصنوعی</span></h3>
+            <ul class="tag-row small">
+              <li>FastAPI</li><li>SQLAlchemy</li><li>PostgreSQL</li><li>Celery + RabbitMQ</li><li>Redis</li><li>Groq LLM</li><li>MinIO (S3)</li><li>Docker</li><li>React</li>
+            </ul>
+            <ul class="bullets">
+              <li><span class="en">Full-stack async system that watches RSS feeds and webpages, powered by Groq LLaMA 3.3 70B, with SHA-256 change detection.</span><span class="fa">سیستم فول‌استک ناهم‌زمانی که فیدهای RSS و صفحات وب را رصد می‌کند؛ با Groq LLaMA 3.3 70B و تشخیص تغییر با SHA-256.</span></li>
+              <li><span class="en">Event-driven architecture with Celery + RabbitMQ + Redis: scheduled polling, dead-letter handling, real-time WebSocket alerts and daily AI digest emails.</span><span class="fa">معماری رویداد-محور با Celery + RabbitMQ + Redis: polling زمان‌بندی‌شده، مدیریت dead-letter، هشدارهای real-time با WebSocket و ایمیل خلاصه روزانه با هوش مصنوعی.</span></li>
+              <li><span class="en">Production-grade observability: structured logging, Prometheus metrics, health checks and Redis-based rate limiting.</span><span class="fa">قابلیت مشاهده‌پذیری در سطح production: لاگ ساختاریافته، متریک‌های Prometheus، health check و rate limiting مبتنی بر Redis.</span></li>
+              <li><span class="en">JWT auth, user-scoped presigned S3/MinIO uploads, Alembic migrations and async test coverage, containerized with a full CI/CD pipeline.</span><span class="fa">احراز هویت JWT، آپلود presigned S3/MinIO مختص هر کاربر، مایگریشن با Alembic و تست‌های async، همراه با CI/CD کامل.</span></li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item">
+          <div class="tl-date">04/2026 – 08/2026</div>
+          <div class="tl-content">
+            <h3>Kelaasor <span class="tl-sub en">Bootcamp management platform</span><span class="tl-sub fa">پلتفرم مدیریت بوت‌کمپ</span></h3>
+            <ul class="tag-row small">
+              <li>Django</li><li>DRF</li><li>PostgreSQL</li><li>Redis</li><li>Celery</li><li>Docker</li>
+            </ul>
+            <ul class="bullets">
+              <li><span class="en">Core DRF backend for a bootcamp platform — listings, chapters, media — with custom phone/OTP auth via SimpleJWT and Redis-backed rate limiting.</span><span class="fa">بک‌اند اصلی DRF برای پلتفرم بوت‌کمپ — لیستینگ، فصل‌ها، رسانه — با احراز هویت سفارشی موبایل/OTP از طریق SimpleJWT و rate limiting مبتنی بر Redis.</span></li>
+              <li><span class="en">Enrollment state machine with buy-now-pay-later support, automating multi-installment payment schedules.</span><span class="fa">ماشین‌حالت ثبت‌نام با پشتیبانی از خرید قسطی و زمان‌بندی خودکار اقساط چندگانه.</span></li>
+              <li><span class="en">Celery + Redis for async SMS notifications via Kavenegar, plus a Markdown blog module with comments.</span><span class="fa">Celery + Redis برای اعلان‌های پیامکی ناهم‌زمان از طریق کاوه‌نگار، به‌همراه ماژول بلاگ با پشتیبانی Markdown و کامنت.</span></li>
+              <li><span class="en">Containerized with Docker and covered by a Pytest test suite.</span><span class="fa">کانتینری‌شده با Docker و پوشش‌داده‌شده با مجموعه تست Pytest.</span></li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item">
+          <div class="tl-date">07/2026</div>
+          <div class="tl-content">
+            <h3>Briefly <span class="tl-sub en">AI-powered audio intelligence platform</span><span class="tl-sub fa">پلتفرم هوشمند تحلیل صوت</span></h3>
+            <ul class="tag-row small">
+              <li>FastAPI</li><li>RabbitMQ</li><li>Celery</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li>
+            </ul>
+            <ul class="bullets">
+              <li><span class="en">Async service for meeting transcription, summarization and action-item extraction using LLaMA 3.3 via the Groq API.</span><span class="fa">سرویس ناهم‌زمان برای تبدیل گفتار جلسات به متن، خلاصه‌سازی و استخراج اقدامات، با LLaMA 3.3 از طریق Groq API.</span></li>
+              <li><span class="en">Background work split into dedicated Celery queues over RabbitMQ, so slow AI calls never block lighter jobs.</span><span class="fa">تقسیم کارهای پس‌زمینه به صف‌های اختصاصی Celery روی RabbitMQ، تا فراخوانی‌های کند هوش مصنوعی مانع کارهای سبک‌تر نشوند.</span></li>
+              <li><span class="en">WebSocket layer pushing live job-status updates, replacing client-side polling entirely.</span><span class="fa">لایه WebSocket برای ارسال زنده وضعیت job، به‌جای polling سمت کلاینت.</span></li>
+              <li><span class="en">Job state, file metadata and structured AI responses modeled with async SQLAlchemy and Alembic.</span><span class="fa">مدل‌سازی وضعیت job، متادیتای فایل و پاسخ‌های ساختاریافته هوش مصنوعی با async SQLAlchemy و Alembic.</span></li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item">
+          <div class="tl-date">06/2026</div>
+          <div class="tl-content">
+            <h3>StudyMate <span class="tl-sub en">AI study assistant</span><span class="tl-sub fa">دستیار مطالعه هوشمند</span></h3>
+            <ul class="tag-row small">
+              <li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>OAuth2</li>
+            </ul>
+            <ul class="bullets">
+              <li><span class="en">Async service generating AI summaries, quizzes and study plans via OpenRouter's LLM API over httpx.</span><span class="fa">سرویس ناهم‌زمان تولید خلاصه، آزمون و برنامه مطالعاتی با استفاده از LLM API شرکت OpenRouter از طریق httpx.</span></li>
+              <li><span class="en">JWT auth with bcrypt hashing, email verification, password reset and refresh-token rotation.</span><span class="fa">احراز هویت JWT با هش bcrypt، تایید ایمیل، بازیابی رمز عبور و چرخش refresh-token.</span></li>
+              <li><span class="en">Redis-backed rate limiting and brute-force protection, with global session revocation on password change.</span><span class="fa">rate limiting و محافظت در برابر brute-force مبتنی بر Redis، همراه با ابطال سراسری نشست پس از تغییر رمز.</span></li>
+              <li><span class="en">LLM responses cached in Redis to cut redundant calls; async Pytest suite with mocked externals; GitHub Actions deploy pipeline.</span><span class="fa">کش پاسخ‌های LLM در Redis برای کاهش فراخوانی‌های تکراری؛ مجموعه تست async با mock سرویس‌های خارجی؛ پایپ‌لاین استقرار با GitHub Actions.</span></li>
+            </ul>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="experience" id="experience">
+    <div class="section-inner">
+      <h2><span class="en">Experience</span><span class="fa">سوابق کاری</span></h2>
+
+      <ol class="timeline timeline-compact">
+        <li class="tl-item">
+          <div class="tl-date">2026<br><span class="tl-place">Tehran, Iran</span></div>
+          <div class="tl-content">
+            <h3><span class="en">Django Developer</span><span class="fa">توسعه‌دهنده جنگو</span> · <span class="en-i">Kelaasor</span></h3>
+            <p><span class="en">Contributed to backend development of the Kelaasor bootcamp platform as part of the engineering team.</span><span class="fa">مشارکت در توسعه بک‌اند پلتفرم بوت‌کمپ کلاسور، به‌عنوان بخشی از تیم مهندسی.</span></p>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-date">10/2020 – 12/2020<br><span class="tl-place">Alborz, Iran</span></div>
+          <div class="tl-content">
+            <h3><span class="en">.NET Developer — Internship</span><span class="fa">توسعه‌دهنده دات‌نت — کارآموزی</span> · <span class="en-i">Avid Samaneh Raymon</span></h3>
+            <p><span class="en">Short-term internship covering .NET fundamentals and introductory team-based software workflows.</span><span class="fa">کارآموزی کوتاه‌مدت شامل مبانی دات‌نت و آشنایی با گردش‌کار تیمی توسعه نرم‌افزار.</span></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="education" id="education">
+    <div class="section-inner education-grid">
+      <div>
+        <h2><span class="en">Education</span><span class="fa">تحصیلات</span></h2>
+        <div class="edu-item">
+          <h3><span class="en">B.Sc. Computer Engineering — Software</span><span class="fa">کارشناسی مهندسی کامپیوتر — نرم‌افزار</span></h3>
+          <p class="edu-meta"><span class="en">Islamic Azad University of Karaj · In progress · 2026–Present</span><span class="fa">دانشگاه آزاد اسلامی کرج · در حال تحصیل · ۲۰۲۶–اکنون</span></p>
+        </div>
+        <div class="edu-item">
+          <h3><span class="en">A.Sc. Computer Engineering — Software</span><span class="fa">کاردانی مهندسی کامپیوتر — نرم‌افزار</span></h3>
+          <p class="edu-meta"><span class="en">Islamic Azad University of Karaj · Completed · 2024–2026</span><span class="fa">دانشگاه آزاد اسلامی کرج · فارغ‌التحصیل · ۲۰۲۴–۲۰۲۶</span></p>
+        </div>
+      </div>
+
+      <div>
+        <h2><span class="en">Courses &amp; languages</span><span class="fa">دوره‌ها و زبان‌ها</span></h2>
+        <div class="edu-item">
+          <h3><span class="en">Back-End Python-Django Bootcamp</span><span class="fa">بوت‌کمپ بک‌اند پایتون-جنگو</span></h3>
+          <p class="edu-meta"><span class="en">Kelaasor · 05/2025–08/2025</span><span class="fa">کلاسور · ۰۵/۲۰۲۵–۰۸/۲۰۲۵</span></p>
+        </div>
+        <div class="lang-bars">
+          <div class="lang-bar-row">
+            <span>English</span>
+            <div class="lang-bar"><span style="width:85%"></span></div>
+            <span class="en">Proficient</span><span class="fa">مسلط</span>
+          </div>
+          <div class="lang-bar-row">
+            <span class="en">Persian</span><span class="fa">فارسی</span>
+            <div class="lang-bar"><span style="width:100%"></span></div>
+            <span class="en">Native</span><span class="fa">زبان مادری</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <h2>
+        <span class="en">Let's build something that stays up.</span>
+        <span class="fa">بیایید چیزی بسازیم که همیشه آنلاین بماند.</span>
+      </h2>
+      <p class="contact-sub">
+        <span class="en">Currently looking for internship and junior backend roles. Reach out any time — I'll get back to you.</span>
+        <span class="fa">در حال حاضر به‌دنبال موقعیت کارآموزی و جونیور بک‌اند هستم. هر زمان پیام بدهید، پاسخ می‌دهم.</span>
+      </p>
+
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:tahanasrollahii@gmail.com">
+          <span class="cc-label en">Email</span><span class="cc-label fa">ایمیل</span>
+          <span class="cc-value">tahanasrollahii@gmail.com</span>
+        </a>
+        <a class="contact-card" href="tel:+989014829025">
+          <span class="cc-label en">Phone</span><span class="cc-label fa">تلفن</span>
+          <span class="cc-value">0901 482 9025</span>
+        </a>
+        <a class="contact-card" href="#" target="_blank" rel="noopener">
+          <span class="cc-label">LinkedIn</span>
+          <span class="cc-value en">Add your profile URL</span><span class="cc-value fa">آدرس پروفایل را اضافه کنید</span>
+        </a>
+        <a class="contact-card" href="#" target="_blank" rel="noopener">
+          <span class="cc-label">GitHub</span>
+          <span class="cc-value en">Add your profile URL</span><span class="cc-value fa">آدرس پروفایل را اضافه کنید</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Taha Nasrollahi</span>
+    <span class="footer-clock"><span class="en">Local time in Tehran —</span><span class="fa">ساعت محلی تهران —</span> <span id="tehranClockFooter">--:--:--</span></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

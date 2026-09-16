@@ -26,68 +26,44 @@
     });
   }
 
-  /* ---------- live Tehran clock ---------- */
-  var clockEls = [
-    document.getElementById("tehranClock"),
-    document.getElementById("tehranClockFooter")
-  ].filter(Boolean);
-
-  function tick() {
-    if (!clockEls.length) return;
-    try {
-      var formatter = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Tehran",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
+  /* ---------- mobile nav ---------- */
+  var burger = document.getElementById("navBurger");
+  var mobileNav = document.getElementById("navMobile");
+  if (burger && mobileNav) {
+    burger.addEventListener("click", function () {
+      var isOpen = mobileNav.classList.toggle("open");
+      burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    mobileNav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        mobileNav.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
       });
-      var value = formatter.format(new Date());
-      clockEls.forEach(function (el) { el.textContent = value; });
-    } catch (e) {
-      /* Intl / timezone unsupported: leave placeholder */
-    }
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  /* ---------- count-up stats, once, on scroll into view ---------- */
-  var statNums = document.querySelectorAll(".stat-num[data-count]");
-  if (statNums.length && "IntersectionObserver" in window) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          var target = parseInt(el.getAttribute("data-count"), 10) || 0;
-          var start = null;
-          var duration = 900;
-
-          function step(ts) {
-            if (start === null) start = ts;
-            var progress = Math.min((ts - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(eased * target);
-            if (progress < 1) {
-              requestAnimationFrame(step);
-            } else {
-              el.textContent = String(target);
-            }
-          }
-          requestAnimationFrame(step);
-          observer.unobserve(el);
-        });
-      },
-      { threshold: 0.6 }
-    );
-    statNums.forEach(function (el) { observer.observe(el); });
-  } else {
-    statNums.forEach(function (el) {
-      el.textContent = el.getAttribute("data-count");
     });
   }
 
   /* ---------- footer year ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---------- subtle one-time reveal on scroll ---------- */
+  var revealTargets = document.querySelectorAll(".work-card, .timeline li, .edu-row");
+  revealTargets.forEach(function (el) { el.classList.add("reveal"); });
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealTargets.forEach(function (el) { io.observe(el); });
+  } else {
+    revealTargets.forEach(function (el) { el.classList.add("in"); });
+  }
 })();

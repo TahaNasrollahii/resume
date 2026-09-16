@@ -91,7 +91,7 @@
         sec.scrollIntoView({ behavior: 'smooth' });
       });
       railTrack.appendChild(node);
-      sec.dataset.railIndex = index;
+      sec.dataset.railIndex = index - 1;
     });
   }
 
@@ -165,26 +165,20 @@
 
 
   /* ---------- Spotlight & mouse effects ---------- */
-  var spotlight = document.getElementById("heroSpotlight");
   var cards = document.querySelectorAll(".skill-card, .contact-item");
   
-  if (spotlight) {
-    document.addEventListener("mousemove", function(e) {
-      var x = e.clientX;
-      var y = e.clientY;
-      spotlight.style.setProperty("--mx", x + "px");
-      spotlight.style.setProperty("--my", y + "px");
-      if(!spotlight.classList.contains("active")) spotlight.classList.add("active");
+  document.addEventListener("mousemove", function(e) {
+    var x = e.clientX;
+    var y = e.clientY;
 
-      cards.forEach(function(card) {
-        var rect = card.getBoundingClientRect();
-        var cx = x - rect.left;
-        var cy = y - rect.top;
-        card.style.setProperty("--mx", cx + "px");
-        card.style.setProperty("--my", cy + "px");
-      });
+    cards.forEach(function(card) {
+      var rect = card.getBoundingClientRect();
+      var cx = x - rect.left;
+      var cy = y - rect.top;
+      card.style.setProperty("--mx", cx + "px");
+      card.style.setProperty("--my", cy + "px");
     });
-  }
+  });
 
   /* ---------- Canvas Background ---------- */
   var canvas = document.getElementById("heroCanvas");

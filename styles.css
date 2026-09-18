@@ -291,4 +291,6 @@ footer a:hover{ color: var(--accent); }
   html[dir="rtl"] .exp-timeline::before{ right:15px; left:auto;}
   html[dir="rtl"] .exp-dot{ right:7px; left:auto;}
   html[dir="rtl"] .exp-item{ padding-right:38px; padding-left:0;}
+  html[dir="rtl"] .stat{ border-left:none; padding:12px 0; }
+  html[dir="rtl"] .stat:first-child, html[dir="rtl"] .stat:last-child { padding: 12px 0; }
 }

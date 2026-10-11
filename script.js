@@ -79,6 +79,8 @@
   var railTrack = document.querySelector(".rail-track");
   var isRtl = () => root.getAttribute("dir") === "rtl";
 
+  var railNodes = [];
+
   // Create rail nodes dynamically based on sections
   if (railTrack) {
     sections.forEach(function(sec, index) {
@@ -93,29 +95,32 @@
       railTrack.appendChild(node);
       sec.dataset.railIndex = index - 1;
     });
+    railNodes = document.querySelectorAll(".rail-node");
   }
 
   function updateNav() {
     var scrollY = window.scrollY;
     var currentId = "";
+    var isMobile = window.innerWidth <= 640;
+    var isTabletOrMobile = window.innerWidth <= 980;
 
-    // Adjust rail fill height
-    var docHeight = document.body.clientHeight - window.innerHeight;
-    if (railFill && docHeight > 0) {
-      var scrolled = (scrollY / docHeight) * 100;
-      railFill.style.height = scrolled + "%";
+    // Adjust rail fill height only when rail is visible on desktop
+    if (!isTabletOrMobile && railFill) {
+      var docHeight = document.body.clientHeight - window.innerHeight;
+      if (docHeight > 0) {
+        var scrolled = (scrollY / docHeight) * 100;
+        railFill.style.height = scrolled + "%";
+      }
     }
 
     sections.forEach(function (sec) {
       var rect = sec.getBoundingClientRect();
-      // If the top of the section is within the top half of the screen
       if (rect.top <= window.innerHeight * 0.5) {
         currentId = sec.getAttribute("id");
       }
     });
 
     // Fallback: if we are at the very bottom, make sure the last section is active
-    // in case it's too short to reach the 50% threshold
     if (Math.ceil(window.innerHeight + scrollY) >= document.body.offsetHeight - 20) {
       currentId = sections[sections.length - 1].getAttribute("id");
     }
@@ -129,37 +134,49 @@
       }
     });
 
-    // Move nav pill
-    if (navPill && activeAnchor) {
+    // Move nav pill only on desktop (on mobile nav-pill is hidden)
+    if (!isMobile && navPill && activeAnchor) {
       navPill.style.width = activeAnchor.offsetWidth + "px";
       if (isRtl()) {
-         var parentRight = activeAnchor.parentElement.getBoundingClientRect().right;
-         var activeRight = activeAnchor.getBoundingClientRect().right;
-         navPill.style.left = 'auto';
-         navPill.style.right = (parentRight - activeRight) + "px";
+        var parentW = activeAnchor.parentElement.offsetWidth;
+        var offsetR = parentW - (activeAnchor.offsetLeft + activeAnchor.offsetWidth);
+        navPill.style.left = 'auto';
+        navPill.style.right = offsetR + "px";
       } else {
-         navPill.style.right = 'auto';
-         navPill.style.left = activeAnchor.offsetLeft + "px";
+        navPill.style.right = 'auto';
+        navPill.style.left = activeAnchor.offsetLeft + "px";
       }
       navPill.style.opacity = 1;
     } else if (navPill) {
       navPill.style.opacity = 0;
     }
 
-    // Update rail nodes
-    var railNodes = document.querySelectorAll(".rail-node");
-    sections.forEach(function(sec) {
-      if(sec.id === currentId && sec.dataset.railIndex !== undefined) {
-         railNodes.forEach(n => n.classList.remove("active"));
-         if(railNodes[sec.dataset.railIndex]) {
+    // Update rail nodes only when rail is visible
+    if (!isTabletOrMobile && railNodes.length > 0) {
+      sections.forEach(function(sec) {
+        if(sec.id === currentId && sec.dataset.railIndex !== undefined) {
+          railNodes.forEach(n => n.classList.remove("active"));
+          if(railNodes[sec.dataset.railIndex]) {
             railNodes[sec.dataset.railIndex].classList.add("active");
-         }
-      }
-    });
+          }
+        }
+      });
+    }
   }
 
-  window.addEventListener("scroll", updateNav);
-  window.addEventListener("resize", updateNav);
+  var ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        updateNav();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
   // initial call
   setTimeout(updateNav, 100);
 

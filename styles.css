@@ -21,7 +21,7 @@
 }
 
 *{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
+html{ scroll-behavior: smooth; overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
   *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -30,6 +30,7 @@ html{ scroll-behavior: smooth; }
 body{
   margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
   line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; position: relative;
+  width: 100%;
 }
 body::before{
   content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -61,6 +62,7 @@ html[dir="rtl"] .stat:first-child{ padding-right:0; }
 html[dir="rtl"] .stat:last-child{ border-left:none; padding-left:0; }
 html[dir="rtl"] .big-word::after{ left:auto; right:2px; }
 html[dir="rtl"] .project-role{ margin-left:0; margin-right:auto; }
+html[dir="rtl"] .exp-timeline{ padding-left:0; padding-right:6px; }
 html[dir="rtl"] .exp-timeline::before{ left:auto; right:23px; }
 html[dir="rtl"] .exp-item{ padding-left:0; padding-right:56px; }
 html[dir="rtl"] .exp-dot{ left:auto; right:15px; }
@@ -121,7 +123,7 @@ html[data-lang="fa"] .lang-toggle [data-set="fa"]{ background:var(--accent); col
 .nav-toggle{ display:none; background:none; border:1px solid var(--border-strong); color:var(--text); width:36px; height:36px; border-radius:4px; cursor:pointer; }
 
 /* ---------- HERO ---------- */
-.hero{ padding: var(--space-6) 0 var(--space-5); position: relative; }
+.hero{ padding: var(--space-6) 0 var(--space-5); position: relative; overflow: hidden; }
 #heroCanvas{ position:absolute; inset:-40px 0 0 0; height: calc(100% + 40px); width:100%; z-index:0; pointer-events:none; opacity:.55; }
 .hero-spotlight{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0; background: radial-gradient(420px circle at var(--mx,50%) var(--my,20%), rgba(var(--accent-rgb),0.10), transparent 60%); transition: background .15s ease, opacity .4s ease; }
 .hero-spotlight.active{ opacity:1; }
@@ -200,7 +202,10 @@ h2{ font-size: clamp(24px,4vw,30px); font-weight:700; margin:0 0 var(--space-3);
 .skill-card .tag:hover{ color: var(--light-text); border-color:#4c4f57; background: rgba(18,20,26,0.06); }
 
 /* ---------- PROJECTS ---------- */
-.project-scroller{ display:flex; gap:20px; overflow-x:auto; padding: 4px 4px 16px; scroll-snap-type: x proximity; margin: 0 -4px; scrollbar-width: none; }
+.project-scroller{
+  display:flex; gap:20px; overflow-x:auto; padding: 4px 4px 16px; scroll-snap-type: x proximity; margin: 0 -4px; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+}
 .project-scroller::-webkit-scrollbar{ display: none; }
 .project-card{
   scroll-snap-align: start; flex: 0 0 min(420px, 84vw); background: var(--surface-2); border:1px solid var(--border);
@@ -285,9 +290,12 @@ footer a:hover{ color: var(--accent); }
   .config-row{ grid-template-columns: 90px 1fr; }
   .contact-grid{ grid-template-columns:1fr; }
   .contact-hero{ flex-direction:column; align-items:flex-start; padding:22px; }
+  .deco-circle{ display: none; }
+  .exp-timeline{ padding-left:0; }
   .exp-timeline::before{ left:15px; }
   .exp-dot{ left:7px; }
   .exp-item{ padding-left:38px; }
+  html[dir="rtl"] .exp-timeline{ padding-right:0; padding-left:0; }
   html[dir="rtl"] .exp-timeline::before{ right:15px; left:auto;}
   html[dir="rtl"] .exp-dot{ right:7px; left:auto;}
   html[dir="rtl"] .exp-item{ padding-right:38px; padding-left:0;}

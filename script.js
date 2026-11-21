@@ -352,7 +352,6 @@
         cancelAnimationFrame(momentumId);
         momentumId = null;
       }
-      projectScroller.classList.remove("is-gliding");
     }
 
     projectScroller.addEventListener("mousedown", function (e) {
@@ -381,7 +380,7 @@
       var now = performance.now();
       var dt = Math.max(1, now - lastTime);
       var instantVel = (e.clientX - lastX) / dt;
-      velocity = velocity * 0.65 + instantVel * 0.35;
+      velocity = velocity * 0.6 + instantVel * 0.4;
       lastX = e.clientX;
       lastTime = now;
 
@@ -393,17 +392,17 @@
       isDown = false;
       projectScroller.classList.remove("is-dragging");
 
-      if (hasDragged && Math.abs(velocity) > 0.15) {
-        projectScroller.classList.add("is-gliding");
-        var vx = velocity * 16;
+      // Only glide if mouse was still moving right before release
+      var idleMs = performance.now() - lastTime;
+      if (hasDragged && idleMs < 65 && Math.abs(velocity) > 0.2) {
+        var vx = velocity * 15;
         function glide() {
           projectScroller.scrollLeft -= vx;
-          vx *= 0.93;
+          vx *= 0.92;
           if (Math.abs(vx) > 0.5) {
             momentumId = requestAnimationFrame(glide);
           } else {
             momentumId = null;
-            projectScroller.classList.remove("is-gliding");
           }
         }
         momentumId = requestAnimationFrame(glide);
@@ -412,7 +411,7 @@
       if (hasDragged) {
         setTimeout(function () {
           suppressClick = false;
-        }, 60);
+        }, 80);
       }
     }
 
@@ -430,33 +429,6 @@
         }
       },
       true
-    );
-
-    // Convert vertical mouse wheel into smooth horizontal scroll while inside bounds
-    projectScroller.addEventListener(
-      "wheel",
-      function (e) {
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // native horizontal trackpad swipe
-        var maxScroll = projectScroller.scrollWidth - projectScroller.clientWidth;
-        if (maxScroll <= 0) return;
-
-        var cur = projectScroller.scrollLeft;
-        var rtl = isRtl();
-        var canScrollForward = rtl ? cur > -(maxScroll - 2) : cur < maxScroll - 2;
-        var canScrollBackward = rtl ? cur < -2 : cur > 2;
-
-        if ((e.deltaY > 0 && canScrollForward) || (e.deltaY < 0 && canScrollBackward)) {
-          e.preventDefault();
-          stopMomentum();
-          projectScroller.classList.add("is-gliding");
-          projectScroller.scrollLeft += rtl ? -e.deltaY : e.deltaY;
-          clearTimeout(projectScroller._wheelTimer);
-          projectScroller._wheelTimer = setTimeout(function () {
-            projectScroller.classList.remove("is-gliding");
-          }, 140);
-        }
-      },
-      { passive: false }
     );
   }
 

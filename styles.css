@@ -203,13 +203,9 @@ h2{ font-size: clamp(24px,4vw,30px); font-weight:700; margin:0 0 var(--space-3);
 
 /* ---------- PROJECTS ---------- */
 .project-scroller{
-  display:flex; gap:20px; overflow-x:auto; padding: 4px 4px 20px; scroll-snap-type: x proximity; margin: 0 -4px;
-  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+  display:flex; gap:20px; overflow-x:auto; padding: 4px 4px 20px; margin: 0 -4px;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scroll-behavior: auto;
   cursor: grab; scrollbar-width: thin; scrollbar-color: rgba(232,163,61,0.42) rgba(236,234,228,0.06);
-}
-.project-scroller.is-dragging,
-.project-scroller.is-gliding{
-  scroll-snap-type: none; scroll-behavior: auto;
 }
 .project-scroller.is-dragging{
   cursor: grabbing; user-select: none; -webkit-user-select: none;
@@ -219,7 +215,7 @@ h2{ font-size: clamp(24px,4vw,30px); font-weight:700; margin:0 0 var(--space-3);
 .project-scroller::-webkit-scrollbar-thumb{ background: rgba(232,163,61,0.38); border-radius: 100px; transition: background .2s ease; }
 .project-scroller::-webkit-scrollbar-thumb:hover{ background: var(--accent); }
 .project-card{
-  scroll-snap-align: start; flex: 0 0 min(420px, 84vw); background: var(--surface-2); border:1px solid var(--border);
+  flex: 0 0 min(420px, 84vw); background: var(--surface-2); border:1px solid var(--border);
   border-radius:14px; overflow:hidden; transition: border-color .25s ease, transform .25s ease;
   user-select: none; -webkit-user-select: none; -webkit-user-drag: none;
 }

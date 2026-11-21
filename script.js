@@ -1,31 +1,35 @@
 (function () {
   "use strict";
 
-  /* ---------- language toggle ---------- */
+  /* ---------- language toggle (default: English) ---------- */
   var root = document.documentElement;
   var body = document.body;
   var toggleBtn = document.getElementById("langToggle");
-  var STORAGE_KEY = "taha-site-lang";
+  var STORAGE_KEY = "taha-site-lang-v2";
 
-  function applyLang(lang) {
-    root.setAttribute("data-lang", lang);
-    body.setAttribute("data-lang", lang);
-    root.setAttribute("lang", lang === "fa" ? "fa" : "en");
-    root.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
-    
+  function applyLang(lang, persist) {
+    var next = lang === "fa" ? "fa" : "en";
+    root.setAttribute("data-lang", next);
+    body.setAttribute("data-lang", next);
+    root.setAttribute("lang", next);
+    root.setAttribute("dir", next === "fa" ? "rtl" : "ltr");
+    document.title = next === "fa" ? "طاها نصرالهی | مهندس نرم‌افزار" : "Taha Nasrollahi | Software Engineer";
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+    }
+
     // adjust nav pill when language changes
     setTimeout(updateNav, 100);
   }
 
   var saved = null;
   try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-  if (saved === "en" || saved === "fa") applyLang(saved);
+  applyLang(saved === "fa" ? "fa" : "en", false);
 
   if (toggleBtn) {
     toggleBtn.addEventListener("click", function () {
       var current = root.getAttribute("data-lang") === "fa" ? "fa" : "en";
-      applyLang(current === "fa" ? "en" : "fa");
+      applyLang(current === "fa" ? "en" : "fa", true);
     });
   }
 
@@ -243,16 +247,16 @@
   if (termBody) {
     var commands = [
       {
-        cmd: "python manage.py runserver",
-        out: "Starting development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C."
+        cmd: "pnpm check && pytest -q",
+        out: "✔ 385 Pytest + 88 Playwright E2E checks green\n✔ Lighthouse Performance 95 · SEO 100"
       },
       {
         cmd: "celery -A core worker -l info",
-        out: "[tasks]\n  . core.tasks.process_data\n  . core.tasks.send_email\ncelery@taha ready."
+        out: "[tasks]\n  . agents.index_pgvector\n  . orders.sync_miniapp\ncelery@taha ready."
       },
       {
         cmd: "docker compose up -d",
-        out: "✔ Container redis-cache   Started\n✔ Container postgres-db   Started\n✔ Container web-api       Started"
+        out: "✔ Container postgres-17   Started\n✔ Container redis-cache   Started\n✔ Container api-gateway   Started"
       }
     ];
 

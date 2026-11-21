@@ -316,21 +316,148 @@
     setTimeout(typeTerminal, 1500);
   }
 
-  /* ---------- Project Horizontal Scrolling ---------- */
+  /* ---------- Project Horizontal Drag & Scroll ---------- */
   var scrollLeftBtn = document.getElementById("scrollLeft");
   var scrollRightBtn = document.getElementById("scrollRight");
   var projectScroller = document.getElementById("projectScroller");
 
-  if (scrollLeftBtn && scrollRightBtn && projectScroller) {
-    var scrollAmount = 400;
-    scrollLeftBtn.addEventListener("click", function() {
-      var mult = isRtl() ? 1 : -1;
-      projectScroller.scrollBy({ left: scrollAmount * mult, behavior: "smooth" });
+  if (projectScroller) {
+    var scrollAmount = 440;
+    if (scrollLeftBtn && scrollRightBtn) {
+      scrollLeftBtn.addEventListener("click", function () {
+        projectScroller.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      });
+      scrollRightBtn.addEventListener("click", function () {
+        projectScroller.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      });
+    }
+
+    // Prevent native HTML5 ghost dragging on links and images inside the scroller
+    projectScroller.addEventListener("dragstart", function (e) {
+      e.preventDefault();
     });
-    scrollRightBtn.addEventListener("click", function() {
-      var mult = isRtl() ? -1 : 1;
-      projectScroller.scrollBy({ left: scrollAmount * mult, behavior: "smooth" });
+
+    var isDown = false;
+    var hasDragged = false;
+    var suppressClick = false;
+    var startX = 0;
+    var startScrollLeft = 0;
+    var lastX = 0;
+    var lastTime = 0;
+    var velocity = 0;
+    var momentumId = null;
+
+    function stopMomentum() {
+      if (momentumId) {
+        cancelAnimationFrame(momentumId);
+        momentumId = null;
+      }
+      projectScroller.classList.remove("is-gliding");
+    }
+
+    projectScroller.addEventListener("mousedown", function (e) {
+      if (e.button !== 0) return;
+      stopMomentum();
+      isDown = true;
+      hasDragged = false;
+      startX = e.clientX;
+      lastX = e.clientX;
+      lastTime = performance.now();
+      velocity = 0;
+      startScrollLeft = projectScroller.scrollLeft;
     });
+
+    window.addEventListener("mousemove", function (e) {
+      if (!isDown) return;
+      var dx = e.clientX - startX;
+      if (!hasDragged && Math.abs(dx) > 5) {
+        hasDragged = true;
+        suppressClick = true;
+        projectScroller.classList.add("is-dragging");
+      }
+      if (!hasDragged) return;
+
+      e.preventDefault();
+      var now = performance.now();
+      var dt = Math.max(1, now - lastTime);
+      var instantVel = (e.clientX - lastX) / dt;
+      velocity = velocity * 0.65 + instantVel * 0.35;
+      lastX = e.clientX;
+      lastTime = now;
+
+      projectScroller.scrollLeft = startScrollLeft - dx;
+    });
+
+    function endDrag() {
+      if (!isDown) return;
+      isDown = false;
+      projectScroller.classList.remove("is-dragging");
+
+      if (hasDragged && Math.abs(velocity) > 0.15) {
+        projectScroller.classList.add("is-gliding");
+        var vx = velocity * 16;
+        function glide() {
+          projectScroller.scrollLeft -= vx;
+          vx *= 0.93;
+          if (Math.abs(vx) > 0.5) {
+            momentumId = requestAnimationFrame(glide);
+          } else {
+            momentumId = null;
+            projectScroller.classList.remove("is-gliding");
+          }
+        }
+        momentumId = requestAnimationFrame(glide);
+      }
+
+      if (hasDragged) {
+        setTimeout(function () {
+          suppressClick = false;
+        }, 60);
+      }
+    }
+
+    window.addEventListener("mouseup", endDrag);
+    window.addEventListener("blur", endDrag);
+
+    // Block accidental card link navigation right after dragging
+    projectScroller.addEventListener(
+      "click",
+      function (e) {
+        if (suppressClick) {
+          e.preventDefault();
+          e.stopPropagation();
+          suppressClick = false;
+        }
+      },
+      true
+    );
+
+    // Convert vertical mouse wheel into smooth horizontal scroll while inside bounds
+    projectScroller.addEventListener(
+      "wheel",
+      function (e) {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // native horizontal trackpad swipe
+        var maxScroll = projectScroller.scrollWidth - projectScroller.clientWidth;
+        if (maxScroll <= 0) return;
+
+        var cur = projectScroller.scrollLeft;
+        var rtl = isRtl();
+        var canScrollForward = rtl ? cur > -(maxScroll - 2) : cur < maxScroll - 2;
+        var canScrollBackward = rtl ? cur < -2 : cur > 2;
+
+        if ((e.deltaY > 0 && canScrollForward) || (e.deltaY < 0 && canScrollBackward)) {
+          e.preventDefault();
+          stopMomentum();
+          projectScroller.classList.add("is-gliding");
+          projectScroller.scrollLeft += rtl ? -e.deltaY : e.deltaY;
+          clearTimeout(projectScroller._wheelTimer);
+          projectScroller._wheelTimer = setTimeout(function () {
+            projectScroller.classList.remove("is-gliding");
+          }, 140);
+        }
+      },
+      { passive: false }
+    );
   }
 
 })();

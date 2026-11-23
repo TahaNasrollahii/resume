@@ -1,9 +1,45 @@
 (function () {
   "use strict";
 
-  /* ---------- language toggle (default: English) ---------- */
+  /* ---------- theme toggle (default: Dark) ---------- */
   var root = document.documentElement;
   var body = document.body;
+  var themeBtn = document.getElementById("themeToggle");
+  var THEME_KEY = "taha-site-theme";
+
+  function applyTheme(theme, persist, animate) {
+    var next = theme === "light" ? "light" : "dark";
+    if (animate) {
+      root.classList.add("theme-animating");
+      clearTimeout(root._themeTimer);
+      root._themeTimer = setTimeout(function () {
+        root.classList.remove("theme-animating");
+      }, 320);
+    }
+    root.setAttribute("data-theme", next);
+    if (themeBtn) {
+      themeBtn.setAttribute(
+        "aria-label",
+        next === "light" ? "Switch to dark mode" : "Switch to light mode"
+      );
+    }
+    if (persist) {
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    }
+  }
+
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem(THEME_KEY); } catch (e) {}
+  applyTheme(savedTheme === "light" ? "light" : "dark", false, false);
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var cur = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      applyTheme(cur === "light" ? "dark" : "light", true, true);
+    });
+  }
+
+  /* ---------- language toggle (default: English) ---------- */
   var toggleBtn = document.getElementById("langToggle");
   var STORAGE_KEY = "taha-site-lang-v2";
 
@@ -227,7 +263,8 @@
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "rgba(232, 163, 61, 0.4)";
+      var isLight = root.getAttribute("data-theme") === "light";
+      ctx.fillStyle = isLight ? "rgba(200, 125, 20, 0.35)" : "rgba(232, 163, 61, 0.4)";
       particles.forEach(function(p) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -252,7 +289,7 @@
       },
       {
         cmd: "celery -A core worker -l info",
-        out: "[tasks]\n  . agents.index_pgvector\n  . orders.sync_miniapp\ncelery@taha ready."
+        out: "[tasks]\n  . agents.index_pgvector\n  . billing.settle_ledger\ncelery@taha ready."
       },
       {
         cmd: "docker compose up -d",

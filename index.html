@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en" dir="ltr">
+<html lang="en" data-lang="en" data-theme="dark" dir="ltr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taha Nasrollahi | Software Engineer</title>
   <meta name="description"
-    content="Taha Nasrollahi — Software Engineer building scalable backends, full-stack web platforms, Telegram Mini-Apps, and AI-powered systems with Python, Django, FastAPI, NestJS, and Next.js.">
+    content="Taha Nasrollahi — Software Engineer building scalable backends, full-stack web platforms, async task pipelines, and AI-powered systems with Python, Django, FastAPI, NestJS, and Next.js.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Vazirmatn:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("taha-site-theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -37,12 +46,23 @@
         </li>
       </ul>
 
-      <div style="display:flex; align-items:center; gap:14px;">
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark mode">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         <button class="lang-toggle mono" id="langToggle" type="button" aria-label="Switch language">
           <span class="lt-option" data-set="en">EN</span><span class="lt-divider">/</span><span class="lt-option"
             data-set="fa">FA</span>
         </button>
-        <a class="cta-pill" href="assets/Taha-Nasrollahi-Resume.pdf" download style="padding: 8px 16px;">
+        <a class="cta-pill header-resume-btn" href="assets/Taha-Nasrollahi-Resume.pdf" download>
           <span class="en">Resume</span><span class="fa">رزومه</span>
         </a>
         <button class="nav-toggle mono" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">≡</button>
@@ -65,10 +85,10 @@
       <p class="role mono"><span class="en">Software Engineer · Back-End, Full-Stack &amp; AI</span><span
           class="fa">مهندس نرم‌افزار · بک‌اند، فول‌استک و هوش مصنوعی</span></p>
       <p class="tagline">
-        <span class="en">I build scalable backends, high-speed web platforms, Telegram Mini-Apps and AI-powered systems
-          — handling everything from architecture and data modeling to production deployment.</span>
-        <span class="fa">من بک‌اندهای مقیاس‌پذیر، پلتفرم‌های وب سریع، مینی‌اپ‌های تلگرام و سیستم‌های هوش مصنوعی می‌سازم؛
-          از طراحی معماری و مدل‌سازی داده تا استقرار کامل در پروداکشن.</span>
+        <span class="en">I build scalable backends, full-stack web platforms, distributed task pipelines and AI-powered
+          systems — handling everything from architecture and data modeling to production deployment.</span>
+        <span class="fa">من بک‌اندهای مقیاس‌پذیر، پلتفرم‌های وب فول‌استک، پایپ‌لاین‌های پردازش ناهم‌زمان و سیستم‌های هوش
+          مصنوعی می‌سازم؛ از طراحی معماری و مدل‌سازی داده تا استقرار کامل در پروداکشن.</span>
       </p>
 
       <div class="hero-actions">
@@ -159,13 +179,13 @@
                 style="color:var(--accent); font-weight:600;">NimyChat</strong>, run <strong
                 style="color:var(--accent); font-weight:600;">Titan</strong>, and deliver end-to-end commercial
               platforms like <strong style="color:var(--accent); font-weight:600;">Demetra</strong> — spanning Python,
-              TypeScript, Next.js 16, Telegram Mini-Apps, and real-time systems built to hold up under production
+              TypeScript, Next.js 16, distributed task queues, and real-time systems built to hold up under production
               load.</span>
             <span class="fa">مسیر من با علاقه به کامپیوتر و تحصیل در <strong style="color:var(--text);">مهندسی
                 کامپیوتر</strong> شروع شد؛ پس از گذراندن <strong style="color:var(--accent); font-weight:600;">بوت‌کمپ
                 پایتون و جنگو</strong> کلاسور، به تیم مهندسی خود پلتفرم پیوستم. امروز در توسعه زیرساخت چندمستاجره
               ایجنت‌های هوش مصنوعی <strong style="color:var(--accent); font-weight:600;">NimyChat</strong> فعالیت دارم،
-              اکوسیستم فروشگاهی و مینی‌اپ <strong style="color:var(--accent); font-weight:600;">Titan</strong> را پیش
+              پلتفرم فروشگاهی و تورنمنت <strong style="color:var(--accent); font-weight:600;">Titan</strong> را پیش
               می‌برم و پلتفرم‌های تجاری و صادراتی کاملی مثل <strong
                 style="color:var(--accent); font-weight:600;">دمترا</strong> را از بک‌اند تا وب و سئو با کیفیت پروداکشن
               پیاده‌سازی می‌کنم.</span>
@@ -195,8 +215,8 @@
                 <line x1="12" y1="17" x2="12" y2="21" />
               </svg>
             </div>
-            <h3><span class="en">Web &amp; Mini-Apps</span><span class="fa">وب و مینی‌اپ</span></h3>
-            <p>TypeScript · Next.js · React · Payload CMS · Telegram Mini-Apps · SEO</p>
+            <h3><span class="en">Frontend &amp; Web</span><span class="fa">فرانت‌اند و وب</span></h3>
+            <p>TypeScript · Next.js · React · Payload CMS · Tailwind CSS · Technical SEO</p>
           </div>
           <div class="skill-card reveal">
             <div class="skill-icon">
@@ -556,10 +576,10 @@
           <h2><span class="en">Let's build something reliable.</span><span class="fa">بیایید چیزی قابل‌اعتماد
               بسازیم.</span></h2>
           <p>
-            <span class="en">Available for custom web/AI platforms, Telegram Mini-Apps, and software engineering
-              collaborations. Feel free to reach out any time.</span>
-            <span class="fa">آماده طراحی پلتفرم‌های اختصاصی وب و هوش مصنوعی، مینی‌اپ تلگرام و همکاری‌های فنی. هر زمان
-              پیام بدهید.</span>
+            <span class="en">Available for custom web &amp; AI platforms, scalable backend systems, and software
+              engineering collaborations. Feel free to reach out any time.</span>
+            <span class="fa">آماده طراحی پلتفرم‌های اختصاصی وب و هوش مصنوعی، سیستم‌های بک‌اند مقیاس‌پذیر و همکاری‌های
+              فنی. هر زمان پیام بدهید.</span>
           </p>
         </div>
         <a href="https://t.me/TahaNasrollahi" target="_blank" rel="noopener" class="contact-cta">
